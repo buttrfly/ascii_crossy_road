@@ -1,0 +1,26 @@
+<html>
+	<body style="background-color: #000;">
+		<div id="game" style="width: 400px; height: 400px; font: 11px Courier; color: #bebebe"></div>
+		<script type="text/javascript">
+			console.log(Math.round(Math.random() * 20));
+			var rnd = function() { return Math.round(Math.random() * 20); }
+			var rows = 30, clmns = 50, s="", pos=0, obj=[25,29], score=0;
+			var road = setInterval(function(){
+				if(pos==obj[0]) clearInterval(road), alert("Game over! Your score = " + score), location.reload();
+				document.getElementById("game").innerHTML = "";
+				for(var i=0; i<rows;i++){
+					for(var j=0; j<clmns; j++){
+						if(j==pos) s+="x";
+						else if(i==obj[0] && j==obj[i,0]) s+="o";
+						else s+="_";
+					}
+					document.getElementById("game").innerHTML += s + "\n";
+					s="";
+				}
+				pos++;
+				if(pos>49) pos=0;
+			}, 75);
+			document.onkeyup = function() {score++;}
+		</script>
+	</body>
+</html>
