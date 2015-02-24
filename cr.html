@@ -1,0 +1,29 @@
+<html>
+	<body style="background-color: #000;">
+		<div id="game" style="width: 360px; height: 360px; font: 11px Courier; color: #bebebe; text-decoration:underline"></div>
+		<script type="text/javascript">
+			var s="", obj=[23,25], spd=[1,2,3], score=0, cars=[[Math.round(Math.random() * 20),Math.round(Math.random() * 50)],[Math.round(Math.random() * 20),Math.round(Math.random() * 50)],[Math.round(Math.random() * 20),Math.round(Math.random() * 50)],[Math.round(Math.random() * 20),Math.round(Math.random() * 50)],[Math.round(Math.random() * 20),Math.round(Math.random() * 50)],[Math.round(Math.random() * 20),Math.round(Math.random() * 50)],[Math.round(Math.random() * 20),Math.round(Math.random() * 50)],[Math.round(Math.random() * 20),Math.round(Math.random() * 50)],[Math.round(Math.random() * 20),Math.round(Math.random() * 50)],[Math.round(Math.random() * 20),Math.round(Math.random() * 50)],[Math.round(Math.random() * 20),Math.round(Math.random() * 50)],[Math.round(Math.random() * 20),Math.round(Math.random() * 50)],[Math.round(Math.random() * 20),Math.round(Math.random() * 50)],[Math.round(Math.random() * 20),Math.round(Math.random() * 50)],[Math.round(Math.random() * 20),Math.round(Math.random() * 50)]];
+			var road = setInterval(function(){
+				for(var i=0;i<15;i++){if(obj[0]==cars[i][0] && obj[1]<=cars[i][1]+3 && obj[1]>=cars[i][1]) {clearInterval(road), alert("Game over! Your score = " + score), location.reload();}}
+				document.getElementById("game").innerHTML = "";
+				for(var i=0; i<25;i++){
+					for(var j=0; j<50; j++){
+						if(i==obj[0] && j==obj[1]) s+="o";
+						else if((i==cars[0][0] && j>=cars[0][1] && j<=cars[0][1]+3)||(i==cars[1][0] && j>=cars[1][1] && j<=cars[1][1]+3)||(i==cars[2][0] && j>=cars[2][1] && j<=cars[2][1]+3)||(i==cars[3][0] && j>=cars[3][1] && j<=cars[3][1]+3)||(i==cars[4][0] && j>=cars[4][1] && j<=cars[4][1]+3)||(i==cars[5][0] && j>=cars[5][1] && j<=cars[5][1]+3)||(i==cars[6][0] && j>=cars[6][1] && j<=cars[6][1]+3)||(i==cars[7][0] && j>=cars[7][1] && j<=cars[7][1]+3)||(i==cars[8][0] && j>=cars[8][1] && j<=cars[8][1]+3)||(i==cars[9][0] && j>=cars[9][1] && j<=cars[9][1]+3)||(i==cars[10][0] && j>=cars[10][1] && j<=cars[10][1]+3)||(i==cars[11][0] && j>=cars[11][1] && j<=cars[11][1]+3)||(i==cars[12][0] && j>=cars[12][1] && j<=cars[12][1]+3)||(i==cars[13][0] && j>=cars[13][1] && j<=cars[13][1]+3)||(i==cars[14][0] && j>=cars[14][1] && j<=cars[14][1]+3)) s+="0";
+						else s+="_";}
+					document.getElementById("game").innerHTML += s + "\n";
+					s="";}
+				for(var i=0; i<15;i+=3){
+						if(cars[i][1]>=50){cars[i][1]=0;}
+						else{cars[i][1]+=spd[0];}}
+				for(var i=1; i<16;i+=3){
+						if(cars[i][1]<=0){cars[i][1]=50;}
+						else{cars[i][1]-=spd[1];}}
+				for(var i=2; i<17;i+=3){
+						if(cars[i][1]>=50){cars[i][1]=0;}
+						else{cars[i][1]+=spd[2];}}
+			}, 75);
+			document.onkeyup = function() {score++;for(var i=0;i<15;i++){if(cars[i][0]==25){cars[i][0]=0;}else{cars[i][0]++;}}}
+		</script>
+	</body>
+</html>
